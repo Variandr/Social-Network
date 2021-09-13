@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './posts.module.css';
-import {AddPostAC, UpdatePostMsgAC} from "../../../state/profile-reducer";
 
 const NewPost = (p) => {
     return (
@@ -12,23 +11,20 @@ const NewPost = (p) => {
     )
 }
 const Posts = (p) => {
-    let NewPostElement = React.createRef();
-    let postsItem = p.state.postsData.map(props => <NewPost id={props.id} post={props.post} img={p.img}/>)
+    let postsItem = p.profilePage.postsData.map(props => <NewPost id={props.id} post={props.post} img={p.img}/>)
 
-    const AddPost = () => {
-        p.store.dispatch(AddPostAC());
+    const AddPost = (e) => {
+    p.pushPost();
     }
 
-    const UpdatePostMsg = () => {
-        let text = NewPostElement.current.value;
-        let action = UpdatePostMsgAC(text);
-        p.store.dispatch(action);
+    const UpdatePostMsg = (e) => {
+        let text = e.target.value;
+        p.onPostUpdate(text);
     }
-
     return (
         <div className={s.posts}>
             <div>
-                <textarea placeholder="Введите текст" ref={NewPostElement} onChange={UpdatePostMsg} value={p.state.postMsg}/>
+                <textarea placeholder="Введите текст" onChange={UpdatePostMsg} value={p.profilePage.postMsg}/>
             </div>
             <div className={s.button}>
                 <button onClick={AddPost}>Add</button>

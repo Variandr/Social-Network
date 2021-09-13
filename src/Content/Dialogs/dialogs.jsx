@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
 import s from './dialogs.module.css';
-import {AddMessageAC, UpdateMessageAC} from "../../state/dialogs-reducer";
 
 const DialogItem = (p) => {
     return <div><NavLink to={'/messages/' + p.id} className={s.dialogItem}
@@ -13,19 +12,16 @@ const NewMessage = (p) => {
 
 const Dialogs = (p) => {
 
-    let dialogElements = p.state.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>)
-
-    let NewMessageElement = React.createRef();
-    let messageItem = p.state.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>)
+    let dialogElements = p.dialogsPage.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>)
+    let messageItem = p.dialogsPage.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>)
 
     const AddMessage = () => {
-        p.store.dispatch(AddMessageAC());
+        p.pushMessage();
     }
 
-    const UpdateMessage = () => {
-        let text = NewMessageElement.current.value;
-        let action = UpdateMessageAC(text);
-        p.store.dispatch(action);
+    const UpdateMessage = (e) => {
+        let text = e.target.value;
+        p.onUpdateMessage(text);
     }
 
     return (
@@ -35,7 +31,7 @@ const Dialogs = (p) => {
             </div>
             <div className={s.messages}>
                 {messageItem}
-                <textarea placeholder={"Введите сообщение"} ref={NewMessageElement} onChange={UpdateMessage} value={p.state.message}/>
+                <textarea placeholder={"Введите сообщение"} onChange={UpdateMessage} value={p.dialogsPage.message}/>
                 <button onClick={AddMessage}>Add</button>
             </div>
         </div>

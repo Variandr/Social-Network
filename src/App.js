@@ -3,8 +3,8 @@ import './App.css';
 import Header from "./Header/header";
 import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./Content/Profile/profile";
-import Dialogs from "./Content/Dialogs/dialogs";
 import Home from "./Content/Home/home";
+import DialogsContainer from "./Content/Dialogs/dialogsContainer";
 
 const App = (props) => {
     return (
@@ -13,14 +13,8 @@ const App = (props) => {
                 <Header className='head'/>
                 <div>
                     <Route path='/home' render={() => <Home/>}/>
-                    <Route path='/profile' render={() => <Profile
-                        state={props.state.profilePage}
-                        store={props.store}
-                    />}/>
-                    <Route path='/messages' render={() => <Dialogs
-                        state={props.state.dialogsPage}
-                        store={props.store}
-                    />}/>
+                    <Route path='/profile' render={() => <Profile store={props.store}/>}/>
+                    <Route path='/messages' render={() => <DialogsContainer store={props.store}/>}/>
                 </div>
             </div>
         </BrowserRouter>
