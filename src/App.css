@@ -1,0 +1,17 @@
+.app {
+    height:200vh;
+    display: grid;
+    background: #2e2e47;
+    grid-template-rows: 1fr 12fr;
+    grid-template-areas:
+            "h"
+            "c";
+}
+
+.head {
+    grid-area: h;
+}
+
+.content {
+    grid-area: c;
+}
