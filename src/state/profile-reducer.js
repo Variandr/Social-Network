@@ -2,12 +2,12 @@ let ADD_POST = 'ADD-POST';
 let UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 
 let initialState = {
-        postsData: [
-            {id: 1, post: 'Hi baby'},
-            {id: 2, post: 'Ima right behind u'},
-            {id: 3, post: 'So go fuck urself'}
-        ],
-        postMsg: ''
+    postsData: [
+        {id: 1, post: 'Hi baby'},
+        {id: 2, post: 'Ima right behind u'},
+        {id: 3, post: 'So go fuck urself'}
+    ],
+    postMsg: ''
 };
 const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -16,13 +16,17 @@ const ProfileReducer = (state = initialState, action) => {
                 id: 4,
                 post: state.postMsg
             }
-            state.postsData.push(newPost);
-            state.postMsg = '';
-            return state;
+            let stateCopy = {...state};
+            stateCopy.postsData = [...state.postsData];
+            stateCopy.postsData.push(newPost);
+            stateCopy.postMsg = '';
+            return stateCopy;
         }
         case UPDATE_POST_TEXT: {
-            state.postMsg = action.PostMsg;
-            return state;
+            let stateCopy = {...state};
+            stateCopy.postMsg = [...state.postMsg];
+            stateCopy.postMsg = action.PostMsg;
+            return stateCopy;
         }
         default:
             return state;

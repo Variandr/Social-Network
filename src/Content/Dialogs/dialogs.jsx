@@ -12,8 +12,8 @@ const NewMessage = (p) => {
 
 const Dialogs = (p) => {
 
-    let dialogElements = p.dialogsPage.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>)
-    let messageItem = p.dialogsPage.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>)
+    let dialogElements = p.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>)
+    let messageItem = p.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>)
 
     const AddMessage = () => {
         p.pushMessage();
@@ -26,12 +26,12 @@ const Dialogs = (p) => {
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialog}>
+            <div>
                 {dialogElements}
             </div>
-            <div className={s.messages}>
+            <div>
                 {messageItem}
-                <textarea placeholder={"Введите сообщение"} onChange={UpdateMessage} value={p.dialogsPage.message}/>
+                <textarea placeholder={"Введите сообщение"} onChange={UpdateMessage} value={p.message}/>
                 <button onClick={AddMessage}>Add</button>
             </div>
         </div>

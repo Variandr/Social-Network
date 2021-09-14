@@ -10,7 +10,7 @@ const Profile = (props) => {
             <img className={s.wp} src={bg}/>
             <p className={s.description}>Hi, i am newbei here :)</p>
             <img className={s.ava} src={ava}/>
-            <ProfileContainer store={props.store} img={ava}/>
+            <ProfileContainer />
         </div>
     )
 }
