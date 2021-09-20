@@ -5,6 +5,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Profile from "./Content/Profile/profile";
 import Home from "./Content/Home/home";
 import DialogsContainer from "./Content/Dialogs/dialogsContainer";
+import UsersContainer from "./Content/Users/usersContainer";
 
 const App = (props) => {
     return (
@@ -15,6 +16,7 @@ const App = (props) => {
                     <Route path='/home' render={() => <Home />}/>
                     <Route path='/profile' render={() => <Profile />}/>
                     <Route path='/messages' render={() => <DialogsContainer />}/>
+                    <Route path='/subscribe' render={() => <UsersContainer />}/>
                 </div>
             </div>
         </BrowserRouter>

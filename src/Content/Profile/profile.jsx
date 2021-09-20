@@ -7,9 +7,9 @@ const Profile = (props) => {
     let bg = 'https://png.pngtree.com/thumb_back/fh260/background/20200714/pngtree-modern-double-color-futuristic-neon-background-image_351866.jpg';
     return (
         <div className={s.profile}>
-            <img className={s.wp} src={bg}/>
+            <img alt="bg" className={s.wp} src={bg}/>
             <p className={s.description}>Hi, i am newbei here :)</p>
-            <img className={s.ava} src={ava}/>
+            <img alt="ava" className={s.ava} src={ava}/>
             <ProfileContainer />
         </div>
     )

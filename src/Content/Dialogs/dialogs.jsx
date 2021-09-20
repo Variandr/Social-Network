@@ -12,8 +12,8 @@ const NewMessage = (p) => {
 
 const Dialogs = (p) => {
 
-    let dialogElements = p.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>)
-    let messageItem = p.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>)
+    let dialogElements = p.dialogsData.map(props => <DialogItem id={props.id} name={props.name}/>);
+    let messageItem = p.messagesData.map(props => <NewMessage id={props.id} Message={props.message}/>);
 
     const AddMessage = () => {
         p.pushMessage();

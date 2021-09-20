@@ -1,4 +1,3 @@
-import React from 'react';
 import {AddPostAC, UpdatePostMsgAC} from "../../../state/profile-reducer";
 import Posts from "./posts";
 import {connect} from "react-redux";

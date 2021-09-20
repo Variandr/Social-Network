@@ -5,7 +5,7 @@ let ava = 'https://images.unsplash.com/photo-1555445091-5a8b655e8a4a?ixlib=rb-1.
 const NewPost = (p) => {
     return (
         <div className={s.post}>
-            <img className={s.ava} src={ava}/>
+            <img alt="ava" className={s.ava} src={ava}/>
             Post {p.id}
             <p>{p.post}</p>
         </div>
