@@ -16,7 +16,7 @@ const App = (props) => {
                     <Route path='/home' render={() => <Home />}/>
                     <Route path='/profile' render={() => <Profile />}/>
                     <Route path='/messages' render={() => <DialogsContainer />}/>
-                    <Route path='/subscribe' render={() => <UsersContainer />}/>
+                    <Route path='/users' render={() => <UsersContainer />}/>
                 </div>
             </div>
         </BrowserRouter>

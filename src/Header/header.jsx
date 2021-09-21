@@ -15,7 +15,7 @@ const Header = () => {
                 <NavLink to='/messages' className={s.button} activeClassName={s.active}>Dialogs</NavLink>
             </div>
             <div>
-                <NavLink to='/subscribe' className={s.button} activeClassName={s.active}>Add Friends</NavLink>
+                <NavLink to='/users' className={s.button} activeClassName={s.active}>Add Friends</NavLink>
             </div>
         </header>
     )
