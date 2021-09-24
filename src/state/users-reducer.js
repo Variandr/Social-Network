@@ -1,9 +1,16 @@
-let FOLLOW = 'ADD-POST';
-let UNFOLLOW = 'UPDATE-POST-TEXT';
-let ADD_USER = 'ADD-PEOPLE'
+const FOLLOW = 'ADD_POST';
+const UNFOLLOW = 'UPDATE_POST_TEXT';
+const ADD_USER = 'ADD_PEOPLE';
+const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 let initialState = {
-    users: []
+    users: [],
+    currentPage: 1,
+    pageSize: 8,
+    totalUsers: 0,
+    isFetching: false
 };
 const UsersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -29,8 +36,13 @@ const UsersReducer = (state = initialState, action) => {
             }
 
         case ADD_USER:
-            return {...state, users: [...state.users, ...action.users]}
-
+            return {...state, users: action.users}
+        case SET_TOTAL_USERS:
+            return {...state, totalUsers: action.usersCount}
+        case SET_CURRENT_PAGE:
+            return {...state, currentPage: action.currentPage}
+        case TOGGLE_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
@@ -40,3 +52,6 @@ export default UsersReducer;
 export const FollowAC = (userID) => ({type: FOLLOW, userID});
 export const UnfollowAC = (userID) => ({type: UNFOLLOW, userID});
 export const AddUsersAC = (users) => ({type: ADD_USER, users});
+export const SetTotalUsersAC = (usersCount) => ({type: SET_TOTAL_USERS, usersCount});
+export const SetCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const ToggleFetchingAC = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});

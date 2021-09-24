@@ -1,9 +1,17 @@
 .ava{
-    width: 200px;
-    border-radius: 30px;
+    width: 150px;
+    border-radius: 120px;
 }
 .text{
-    color: azure;
+    color: yellow;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
+}
+.counter{
+    color: yellow;
+    font-size: 18px;
+}
+.selected{
+    color: darkorange;
+    font-size: 19px;
 }
