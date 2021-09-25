@@ -5,18 +5,18 @@ import {NavLink} from "react-router-dom";
 const Header = () => {
     return (
         <header>
-            <div>
-                <NavLink to='/home' className={s.button} activeClassName={s.active}>Home</NavLink>
-            </div>
-            <div>
-                <NavLink to='/profile' className={s.button} activeClassName={s.active}>Profile</NavLink>
-            </div>
-            <div>
-                <NavLink to='/messages' className={s.button} activeClassName={s.active}>Dialogs</NavLink>
-            </div>
-            <div>
-                <NavLink to='/users' className={s.button} activeClassName={s.active}>Add Friends</NavLink>
-            </div>
+            <span>
+                <NavLink to='/home' className={s.button}>Home</NavLink>
+            </span>
+            <span>
+                <NavLink to='/profile' className={s.button}>Profile</NavLink>
+            </span>
+            <span>
+                <NavLink to='/messages' className={s.button}>Dialogs</NavLink>
+            </span>
+            <span>
+                <NavLink to='/users' className={s.button}>Add Friends</NavLink>
+            </span>
         </header>
     )
 }
