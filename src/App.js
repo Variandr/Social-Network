@@ -3,9 +3,9 @@ import './App.css';
 import Header from "./Header/header";
 import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./Content/Home/home";
-import DialogsContainer from "./Content/Dialogs/dialogsContainer";
 import UsersContainer from "./Content/Users/usersContainer";
 import ProfileContainer from "./Content/Profile/profileContainer";
+import AuthContainer from "./Header/Authorization/authContainer";
 
 const App = (props) => {
     return (
@@ -13,9 +13,9 @@ const App = (props) => {
             <div className="app">
                 <Header className='head'/>
                 <div>
+                    <Route path='/auth' render={() => <AuthContainer />} />
                     <Route path='/home' render={() => <Home />}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-                    <Route path='/messages' render={() => <DialogsContainer />}/>
                     <Route path='/users' render={() => <UsersContainer />}/>
                 </div>
             </div>

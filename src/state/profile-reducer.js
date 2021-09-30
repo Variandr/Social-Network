@@ -1,3 +1,5 @@
+import {ProfileAPI} from "../API/api";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
@@ -43,3 +45,12 @@ export const AddPost = () => ({type: ADD_POST});
 export const UpdatePostMsg = (message) => ({type: UPDATE_POST_TEXT, message});
 export const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 export const AddProfile = (profile) => ({type: ADD_PROFILE, profile});
+export const getProfile = (userId) => {
+    return(dispatch) => {
+        dispatch(ToggleFetching(true));
+        ProfileAPI.getProfile(userId).then(data => {
+            dispatch(ToggleFetching(false));
+            dispatch(AddProfile(data));
+        });
+    }
+}

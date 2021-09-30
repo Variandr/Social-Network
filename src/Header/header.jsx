@@ -2,7 +2,8 @@ import React from 'react';
 import s from './header.module.css';
 import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+    debugger
     return (
         <header>
             <span>
@@ -17,6 +18,9 @@ const Header = () => {
             <span>
                 <NavLink to='/users' className={s.button}>Add Friends</NavLink>
             </span>
+            <div className={s.log}>
+                {props.isAuth ? props.login : <NavLink to='/auth' className={s.auth}>SignIn</NavLink>}
+            </div>
         </header>
     )
 }

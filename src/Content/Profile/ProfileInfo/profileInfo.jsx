@@ -18,6 +18,7 @@ const ProfileInfo = (props) => {
     }
     return (
         <div className={s.profile}>
+            <div>{props.profile.fullName}</div>
             <p className={s.description}>{props.profile.aboutMe}</p>
             <img alt="ava" className={s.ava}
                  src={props.profile.photos.large != null ? props.profile.photos.large : avatar}/>
@@ -27,12 +28,18 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.contacts}>
                 <ul className={s.socialicons1}>
-                    <li><a href={"https://" + props.profile.contacts.facebook} target="_blank"><img src={facebook}/></a></li>
-                    <li><a href={"https://" + props.profile.contacts.vk} target="_blank"><img src={vk}/></a></li>
-                    <li><a href={"https://" + props.profile.contacts.twitter} target="_blank"><img src={twitter}/></a></li>
-                    <li><a href={"https://" + props.profile.contacts.instagram} target="_blank"><img src={instagram}/></a></li>
-                    <li><a href={"https://" + props.profile.contacts.github} target="_blank"><img src={git}/></a></li>
-                    <li><a href={"https://" + props.profile.contacts.youtube} target="_blank"><img src={youtube}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.facebook} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={facebook}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.vk} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={vk}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.twitter} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={twitter}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.instagram} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={instagram}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.github} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={git}/></a></li>
+                    <li><a href={"https://" + props.profile.contacts.youtube} rel="noreferrer" target="_blank"><img
+                        alt="social-media" src={youtube}/></a></li>
                 </ul>
             </div>
             <PostContainer/>

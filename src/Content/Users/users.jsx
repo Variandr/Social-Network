@@ -4,7 +4,7 @@ import userAva from '../../assets/userAvatar.png'
 import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
-    let pagesCount = Math.ceil(props.totalUsers / props.pageSize);
+    // let pagesCount = Math.ceil(props.totalUsers / props.pageSize);
     let pages = [];
     for (let i = 1; i <= 10; i++) {
         pages.push(i);
@@ -30,12 +30,14 @@ const Users = (props) => {
                 </div>
                 <div>
                     {u.follow
-                        ? <button onClick={() => {
-                            props.Unfollow(u.id)
-                        }}>Unfollow</button>
-                        : <button onClick={() => {
-                            props.Follow(u.id)
-                        }}>Follow</button>}
+                        ? <button disabled={props.followingProgress.some(id => id === u.id)}
+                                  onClick={() => {
+                                      props.unfollowThunk(u.id)
+                                  }}>Unfollow</button>
+                        : <button disabled={props.followingProgress.some(id => id === u.id)}
+                                  onClick={() => {
+                                      props.followThunk(u.id)
+                                  }}>Follow</button>}
                 </div>
             </div>)
         }
