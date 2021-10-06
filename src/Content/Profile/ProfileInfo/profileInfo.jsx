@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './profileInfo.module.css';
-import PostContainer from './Posts/postContainer';
 import avatar from '../../../assets/avatar.jpg';
 import Preloader from '../../../components/preloader';
 import yes from '../../../assets/checkmark-yes.png';
@@ -11,6 +10,7 @@ import twitter from '../../../assets/twit.png';
 import instagram from '../../../assets/inst.png';
 import git from '../../../assets/git.png';
 import youtube from '../../../assets/yt.png';
+import ProfileStatus from "./profileStatus";
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -19,7 +19,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.profile}>
             <div>{props.profile.fullName}</div>
-            <p className={s.description}>{props.profile.aboutMe}</p>
+            <p className={s.description}><ProfileStatus status={props.profile.aboutMe}/></p>
             <img alt="ava" className={s.ava}
                  src={props.profile.photos.large != null ? props.profile.photos.large : avatar}/>
             <div>
@@ -42,7 +42,6 @@ const ProfileInfo = (props) => {
                         alt="social-media" src={youtube}/></a></li>
                 </ul>
             </div>
-            <PostContainer/>
         </div>
     )
 }

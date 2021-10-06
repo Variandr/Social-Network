@@ -5,13 +5,16 @@
     grid-template-rows: 1fr 12fr;
     grid-template-areas:
             "h"
+            "n"
             "c";
 }
-
 .head {
     grid-area: h;
 }
-
+.nav {
+    grid-area: n;
+    height: 100px;
+}
 .content {
     grid-area: c;
 }

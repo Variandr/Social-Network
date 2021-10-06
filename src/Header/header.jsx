@@ -1,27 +1,19 @@
 import React from 'react';
 import s from './header.module.css';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Header = (props) => {
     debugger
     return (
-        <header>
-            <span>
-                <NavLink to='/home' className={s.button}>Home</NavLink>
+        <div className={s.head}>
+            <span className={s.log}>
+                {props.isAuth ? props.login : <NavLink className={s.auth} to='/auth'>SignIn</NavLink>}
             </span>
             <span>
-                <NavLink to='/profile' className={s.button}>Profile</NavLink>
+                <img className={s.logo} src={logo} alt={logo}/>
             </span>
-            <span>
-                <NavLink to='/messages' className={s.button}>Dialogs</NavLink>
-            </span>
-            <span>
-                <NavLink to='/users' className={s.button}>Add Friends</NavLink>
-            </span>
-            <div className={s.log}>
-                {props.isAuth ? props.login : <NavLink to='/auth' className={s.auth}>SignIn</NavLink>}
-            </div>
-        </header>
+        </div>
     )
 }
 export default Header;
