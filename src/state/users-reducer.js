@@ -83,7 +83,7 @@ export const unfollowThunk = (userId) => {
     return (dispatch) => {
         dispatch(ToggleFollowing(true, userId));
         UsersAPI.unfollowUser(userId).then(response => {
-            if (response.data.resultCode == 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(Unfollow(userId))
             }
             dispatch(ToggleFollowing(false, userId));
@@ -94,7 +94,7 @@ export const followThunk = (userId) => {
     return (dispatch) => {
         dispatch(ToggleFollowing(true, userId));
         UsersAPI.followUser(userId).then(response => {
-            if (response.data.resultCode == 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(Follow(userId))
             }
             dispatch(ToggleFollowing(false, userId));

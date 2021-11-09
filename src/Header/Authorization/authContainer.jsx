@@ -12,7 +12,6 @@ class AuthContainer extends React.Component {
         return <>
             <Header {...this.props}/>
         </>
-
     }
 }
 

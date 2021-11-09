@@ -3,7 +3,6 @@ import s from './navbar.module.css';
 import {NavLink} from "react-router-dom";
 
 const Navbar = (props) => {
-    debugger
     return (
         <header>
             <span>

@@ -1,8 +1,8 @@
 .app {
-    height:200vh;
+    height: 2000px;
     display: grid;
     background: #2e2e47;
-    grid-template-rows: 1fr 12fr;
+    grid-template-rows: 1fr 20px 10fr;
     grid-template-areas:
             "h"
             "n"
@@ -13,7 +13,6 @@
 }
 .nav {
     grid-area: n;
-    height: 100px;
 }
 .content {
     grid-area: c;
