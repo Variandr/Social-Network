@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Home from "./Content/Home/home";
 import UsersContainer from "./Content/Users/usersContainer";
 import ProfileContainer from "./Content/Profile/profileContainer";
-import AuthContainer from "./Header/Authorization/authContainer";
+import AuthContainer from "./Header/HeaderContainer";
 import Navbar from "./Navbar/navbar";
 import Login from "./Content/Login/login";
 

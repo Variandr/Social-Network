@@ -4,9 +4,9 @@ import userAva from '../../assets/userAvatar.png'
 import {NavLink} from "react-router-dom";
 
 const Users = (props) => {
-    // let pagesCount = Math.ceil(props.totalUsers / props.pageSize);
+    let pagesCount = 10
     let pages = [];
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
     return <div>
