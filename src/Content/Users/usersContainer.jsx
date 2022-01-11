@@ -11,11 +11,11 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.usersOnPage);
     }
 
     onPageChanged = (pageNum) => {
-        this.props.getUsers(pageNum, this.props.pageSize);
+        this.props.getUsers(pageNum, this.props.usersOnPage);
     }
 
     render() {
@@ -24,7 +24,7 @@ class UsersContainer extends React.Component {
             <Users
                 users={this.props.users}
                 totalUsers={this.props.totalUsers}
-                pageSize={this.props.pageSize}
+                usersOnPage={this.props.usersOnPage}
                 currentPage={this.props.currentPage}
                 onPageChanged={this.onPageChanged}
                 followThunk={this.props.followThunk}
@@ -39,7 +39,7 @@ let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         totalUsers: state.usersPage.totalUsers,
-        pageSize: state.usersPage.pageSize,
+        usersOnPage: state.usersPage.usersOnPage,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingProgress: state.usersPage.followingProgress

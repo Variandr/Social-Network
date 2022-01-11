@@ -4,7 +4,7 @@
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    grid-auto-rows: 300px;
+    grid-auto-rows: 200px;
     color: white;
     font-size: 24px;
     padding: 20px;

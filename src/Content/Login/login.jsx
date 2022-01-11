@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Field, reduxForm} from "redux-form";
 import s from "./login.module.css";
 import {LogIn} from "../../state/auth-reducer";
 import {connect} from "react-redux";
 import {ProfileRedirect} from "../../hoc/profileRedirect";
 import {compose} from "redux";
+import {AiFillEye, AiFillEyeInvisible} from "react-icons/all";
 
 const renderField = ({input, label, type, meta}) => {
     return <div>
@@ -24,6 +25,9 @@ const submitting = () => {
 
 }
 const LoginForm = (props) => {
+    let [isVisible, setVisibility] = useState(false);
+    const showPassword = () => setVisibility(true);
+    const hidePassword = () => setVisibility(false);
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.group}>
@@ -32,9 +36,13 @@ const LoginForm = (props) => {
                        validate={[required, maxLength20]}/>
             </div>
             <div className={s.group}>
-                <Field className={s.input} component={renderField} name="password" placeholder="Password"
-                       label="Password" type="password"
-                       validate={[required, maxLength40]}/>
+                    <Field className={s.input} component={renderField} name="password" placeholder="Password"
+                           label="Password" type={isVisible ? "text" : "password"}
+                           validate={[required, maxLength40]}/>
+                <div className={s.visibilityBtn}>
+                    {isVisible ? <div onClick={hidePassword}><AiFillEyeInvisible/></div> :
+                        <div onClick={showPassword}><AiFillEye/></div>}
+                </div>
             </div>
             <div>
                 <Field component="input" name="rememberMe" type="checkbox"/>Remember me
@@ -48,7 +56,8 @@ const LoginForm = (props) => {
         </form>
     )
 }
-
+//login: korolaxa@gmail.com
+//password: vfrcbv
 const ReduxLoginForm = reduxForm({form: "login"})(LoginForm);
 const Login = (props) => {
     const onSubmit = (formData) => {

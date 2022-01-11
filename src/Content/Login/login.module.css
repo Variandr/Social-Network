@@ -44,6 +44,11 @@ form:hover {
     margin-bottom: 32px;
 }
 
+.visibilityBtn{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .input {
     font-size: 16px;
     color: #e0e0e0;
