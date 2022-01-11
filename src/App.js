@@ -22,16 +22,16 @@ class App extends React.Component {
             return <Preloader/>
         }
         return (
-                <div className='app'>
-                    <AuthContainer className='head'/>
-                    <Navbar className='nav'/>
-                    <div className='content'>
-                        <Route path='/home' render={() => <Home/>}/>
-                        <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/auth' render={() => <Login/>}/>
-                    </div>
+            <div className='app'>
+                <AuthContainer className='head'/>
+                <Navbar className='nav'/>
+                <div className='content'>
+                    <Route path='/home' render={() => <Home/>}/>
+                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/auth' render={() => <Login/>}/>
                 </div>
+            </div>
         );
     }
 }
