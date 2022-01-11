@@ -16,10 +16,10 @@ export const UsersAPI = {
             });
     },
     followUser(userId) {
-        return instance.post(`/follow/${userId}`)
+        return instance.post(`follow/${userId}`)
     },
     unfollowUser(userId) {
-        return instance.delete(`/follow/${userId}`)
+        return instance.delete(`follow/${userId}`)
     }
 }
 

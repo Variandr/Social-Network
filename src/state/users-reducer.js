@@ -21,21 +21,21 @@ const UsersReducer = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(props => {
-                    if (props.id === action.userID) {
-                        return {...props, follow: true}
+                users: state.users.map(user => {
+                    if (user.id === action.userID) {
+                        return {...user, followed: true}
                     }
-                    return props;
+                    return user;
                 })
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(props => {
-                    if (props.id === action.userID) {
-                        return {...props, follow: false}
+                users: state.users.map(user => {
+                    if (user.id === action.userID) {
+                        return {...user, followed: false}
                     }
-                    return props;
+                    return user;
                 })
             }
 
@@ -79,6 +79,7 @@ export const getUsers = (currentPage, pageSize) => {
         )
     }
 }
+
 export const unfollowThunk = (userId) => {
     return (dispatch) => {
         dispatch(ToggleFollowing(true, userId));

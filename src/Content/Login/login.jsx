@@ -68,6 +68,6 @@ const Login = (props) => {
     </div>
 }
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.loginPage.isAuth
 })
 export default compose(ProfileRedirect, connect(mapStateToProps, {LogIn}))(Login);

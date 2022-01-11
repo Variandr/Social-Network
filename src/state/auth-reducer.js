@@ -4,7 +4,7 @@ import {stopSubmit} from "redux-form";
 const ADD_AUTH_DATA = 'ADD_AUTH_DATA';
 
 let initialState = {
-    userId: null,
+    id: null,
     email: null,
     login: null,
     isAuth: false
@@ -12,25 +12,22 @@ let initialState = {
 const AuthReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_AUTH_DATA:
-            return {
-                ...state,
-                ...action.payload
-            }
+            return {...state, ...action.payload}
         default:
             return state;
     }
 }
 
 export default AuthReducer;
-export const AddAuthInfo = (userId, email, login, isAuth) => ({
+export const AddAuthInfo = (id, email, login, isAuth) => ({
     type: ADD_AUTH_DATA,
-    payload: {userId, email, login, isAuth}
+    payload: {id, email, login, isAuth}
 });
 export const AuthMe = () => (dispatch) => {
-    AuthAPI.authMe().then(response => {
+    return AuthAPI.authMe().then(response => {
         if (response.data.resultCode === 0) {
-            let {userId, login, email} = response.data.data;
-            dispatch(AddAuthInfo(userId, email, login, true));
+            let {id, login, email} = response.data.data;
+            dispatch(AddAuthInfo(id, email, login, true));
         }
     })
 }

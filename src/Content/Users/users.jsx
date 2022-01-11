@@ -13,7 +13,7 @@ const Users = (props) => {
         <div className={s.counter}>
             {pages.map(p => {
                 return <span className={props.currentPage === p && s.selected}
-                             onClick={(e) => {
+                             onClick={() => {
                                  props.onPageChanged(p)
                              }}> {p}</span>
             })}
@@ -29,7 +29,7 @@ const Users = (props) => {
                     <div>{u.status}  </div>
                 </div>
                 <div>
-                    {u.follow
+                    {u.followed
                         ? <button disabled={props.followingProgress.some(id => id === u.id)}
                                   onClick={() => {
                                       props.unfollowThunk(u.id)

@@ -4,10 +4,6 @@ import {AuthMe, LogOut} from "../state/auth-reducer";
 import Header from "./header";
 
 class HeaderContainer extends React.Component {
-    componentDidMount() {
-        this.props.AuthMe();
-    }
-
     render() {
         return <>
             <Header {...this.props}/>
@@ -17,8 +13,8 @@ class HeaderContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        login: state.auth.login,
-        isAuth: state.auth.isAuth
+        login: state.loginPage.login,
+        isAuth: state.loginPage.isAuth
     }
 }
 export default connect(mapStateToProps, {AuthMe, LogOut})(HeaderContainer);
