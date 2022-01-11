@@ -1,11 +1,11 @@
 import {
     AddUsers, SetCurrentPage, SetTotalUsers,
-    getUsers, followThunk, unfollowThunk
+    getUsers, follow, unfollow
 } from "../../state/users-reducer";
 import Users from "./users";
 import {connect} from "react-redux";
 import React from "react";
-import Preloader from "../../components/preloader";
+import Preloader from "../../helpers/preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {
@@ -54,5 +54,5 @@ let mapStateToProps = (state) => {
 }
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, {AddUsers, SetTotalUsers, SetCurrentPage, getUsers, followThunk, unfollowThunk})
+    connect(mapStateToProps, {AddUsers, SetTotalUsers, SetCurrentPage, getUsers, followThunk: follow, unfollowThunk: unfollow})
     )(UsersContainer);

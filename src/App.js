@@ -9,7 +9,7 @@ import Navbar from "./Navbar/navbar";
 import Login from "./Content/Login/login";
 import {connect} from "react-redux";
 import {initializeApp} from "./state/app-reducer";
-import Preloader from "./components/preloader";
+import Preloader from "./helpers/preloader";
 import {compose} from "redux";
 
 class App extends React.Component {

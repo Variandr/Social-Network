@@ -3,7 +3,7 @@ import s from "./users.module.css"
 import userAva from '../../assets/userAvatar.png'
 import {NavLink} from "react-router-dom";
 
-const Users = (props) => {
+const Users = React.memo((props) => {
     let pagesCount = 10
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -42,6 +42,6 @@ const Users = (props) => {
             </div>)
         }
     </div>
-}
+})
 
 export default Users;

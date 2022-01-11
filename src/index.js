@@ -6,7 +6,6 @@ import store from "./state/state";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
-const rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
@@ -17,10 +16,3 @@ const rerenderTree = () => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
-rerenderTree(store.getState());
-
-store.subscribe(() => {
-    let state = store.getState();
-    rerenderTree(state);
-});
