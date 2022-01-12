@@ -1,17 +1,17 @@
 import {UsersAPI} from "../API/api";
 import {ChangeArrayData} from "../helpers/objectHelpers";
 
-const FOLLOW = 'ADD_POST';
-const UNFOLLOW = 'UPDATE_POST_TEXT';
-const ADD_USER = 'ADD_PEOPLE';
-const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING';
+const FOLLOW = '/users/ADD_POST';
+const UNFOLLOW = '/users/UPDATE_POST_TEXT';
+const ADD_USER = '/users/ADD_PEOPLE';
+const SET_TOTAL_USERS = '/users/SET_TOTAL_USERS';
+const SET_PAGE = '/users/SET_PAGE';
+const TOGGLE_FETCHING = '/users/TOGGLE_FETCHING';
+const TOGGLE_FOLLOWING = '/users/TOGGLE_FOLLOWING';
 
 let initialState = {
     users: [],
-    currentPage: 1,
+    page: 1,
     usersOnPage: 6,
     totalUsers: 0,
     isFetching: false,
@@ -27,8 +27,8 @@ const UsersReducer = (state = initialState, action) => {
             return {...state, users: action.users}
         case SET_TOTAL_USERS:
             return {...state, totalUsers: action.usersCount}
-        case SET_CURRENT_PAGE:
-            return {...state, currentPage: action.currentPage}
+        case SET_PAGE:
+            return {...state, page: action.page}
         case TOGGLE_FETCHING:
             return {...state, isFetching: action.isFetching}
         case TOGGLE_FOLLOWING:
@@ -48,20 +48,18 @@ const Follow = (userID) => ({type: FOLLOW, userID});
 const Unfollow = (userID) => ({type: UNFOLLOW, userID});
 export const AddUsers = (users) => ({type: ADD_USER, users});
 export const SetTotalUsers = (usersCount) => ({type: SET_TOTAL_USERS, usersCount});
-export const SetCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
-export const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
-export const ToggleFollowing = (followingProgress, userId) => ({type: TOGGLE_FOLLOWING, followingProgress, userId});
-
-export const getUsers = (currentPage, pageSize) => {
+export const SetPage = (page) => ({type: SET_PAGE, page});
+const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+const ToggleFollowing = (followingProgress, userId) => ({type: TOGGLE_FOLLOWING, followingProgress, userId});
+export const getUsers = (page, pageSize) => {
     return async (dispatch) => {
-        dispatch(SetCurrentPage(currentPage));
+        dispatch(SetPage(page));
         dispatch(ToggleFetching(true));
-        let data = await UsersAPI.getUsers(currentPage, pageSize);
+        let data = await UsersAPI.getUsers(page, pageSize);
         dispatch(ToggleFetching(false));
         dispatch(AddUsers(data.items));
     }
 }
-
 const followingThunk = async (dispatch, userId, thunk, actionCreator) => {
     dispatch(ToggleFollowing(true, userId));
     let response = await thunk(userId)

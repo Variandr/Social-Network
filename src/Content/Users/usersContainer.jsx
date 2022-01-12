@@ -1,5 +1,5 @@
 import {
-    AddUsers, SetCurrentPage, SetTotalUsers,
+    AddUsers, SetPage, SetTotalUsers,
     getUsers, follow, unfollow
 } from "../../state/users-reducer";
 import Users from "./users";
@@ -18,7 +18,7 @@ import {
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.usersOnPage);
+        this.props.getUsers(this.props.page, this.props.usersOnPage);
     }
 
     onPageChanged = (pageNum) => {
@@ -32,10 +32,10 @@ class UsersContainer extends React.Component {
                 users={this.props.users}
                 totalUsers={this.props.totalUsers}
                 usersOnPage={this.props.usersOnPage}
-                currentPage={this.props.currentPage}
+                page={this.props.page}
                 onPageChanged={this.onPageChanged}
-                followThunk={this.props.followThunk}
-                unfollowThunk={this.props.unfollowThunk}
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
                 followingProgress={this.props.followingProgress}
             />
         </>
@@ -54,5 +54,4 @@ let mapStateToProps = (state) => {
 }
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, {AddUsers, SetTotalUsers, SetCurrentPage, getUsers, followThunk: follow, unfollowThunk: unfollow})
-    )(UsersContainer);
+    connect(mapStateToProps, {AddUsers, SetTotalUsers, SetPage, getUsers, follow, unfollow}))(UsersContainer);

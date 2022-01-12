@@ -12,34 +12,29 @@ import git from '../../../assets/git.png';
 import youtube from '../../../assets/yt.png';
 import ProfileStatus from "./profileStatus";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}) => {
+    if (!profile) {
         return <Preloader/>
     }
+    let contacts = profile.data.contacts;
     return (
         <div className={s.profile}>
-            <div>{props.profile.fullName}</div>
-            <p className={s.description}><ProfileStatus updateStatus={props.updateStatus} status={props.status}/></p>
+            <div>{profile.fullName}</div>
+            <p className={s.description}><ProfileStatus updateStatus={updateStatus} status={status}/></p>
             <img alt="ava" className={s.ava}
-                 src={props.profile.data.photos.large != null ? props.profile.data.photos.large : avatar}/>
+                 src={profile.data.photos.large != null ? profile.data.photos.large : avatar}/>
             <div>
                 Looking for a job: <img alt="checkmark" className={s.mark}
-                                        src={props.profile.data.lookingForAJob ? yes : no}/>
+                                        src={profile.data.lookingForAJob ? yes : no}/>
             </div>
             <div className={s.contacts}>
                 <ul className={s.socialicons1}>
-                    <li><a href={"https://" + props.profile.data.contacts.facebook} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={facebook}/></a></li>
-                    <li><a href={"https://" + props.profile.data.contacts.vk} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={vk}/></a></li>
-                    <li><a href={"https://" + props.profile.data.contacts.twitter} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={twitter}/></a></li>
-                    <li><a href={"https://" + props.profile.data.contacts.instagram} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={instagram}/></a></li>
-                    <li><a href={"https://" + props.profile.data.contacts.github} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={git}/></a></li>
-                    <li><a href={"https://" + props.profile.data.contacts.youtube} rel="noreferrer" target="_blank"><img
-                        alt="social-media" src={youtube}/></a></li>
+                    {contacts.facebook ? <li><a href={"https://" + contacts.facebook} rel="noreferrer" target="_blank"><img alt="social-media" src={facebook}/></a></li> : ""}
+                    {contacts.vk ? <li><a href={"https://" + contacts.vk} rel="noreferrer" target="_blank"><img alt="social-media" src={vk}/></a></li> : ""}
+                    {contacts.twitter ? <li><a href={"https://" + contacts.twitter} rel="noreferrer" target="_blank"><img alt="social-media" src={twitter}/></a></li> : ""}
+                    {contacts.instagram ? <li><a href={"https://" + contacts.instagram} rel="noreferrer" target="_blank"><img alt="social-media" src={instagram}/></a></li> : ""}
+                    {contacts.github ? <li><a href={"https://" + contacts.github} rel="noreferrer" target="_blank"><img alt="social-media" src={git}/></a></li> : ""}
+                    {contacts.youtube ? <li><a href={"https://" + contacts.youtube} rel="noreferrer" target="_blank"><img alt="social-media" src={youtube}/></a></li> : ""}
                 </ul>
             </div>
         </div>

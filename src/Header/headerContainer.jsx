@@ -4,12 +4,10 @@ import {AuthMe, LogOut} from "../state/auth-reducer";
 import Header from "./header";
 import {getAuthInfo, getLogin} from "../selectors/headerSelectors";
 
-class HeaderContainer extends React.Component {
-    render() {
-        return <>
-            <Header {...this.props}/>
-        </>
-    }
+const HeaderContainer = (props) => {
+    return <>
+        <Header {...props}/>
+    </>
 }
 
 let mapStateToProps = (state) => {

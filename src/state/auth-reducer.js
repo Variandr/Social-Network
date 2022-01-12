@@ -19,33 +19,29 @@ const AuthReducer = (state = initialState, action) => {
 }
 
 export default AuthReducer;
-export const AddAuthInfo = (id, email, login, isAuth) => ({
+const AddAuthData = (id, email, login, isAuth) => ({
     type: ADD_AUTH_DATA,
     payload: {id, email, login, isAuth}
 });
-export const AuthMe = () => (dispatch) => {
-    return AuthAPI.authMe().then(response => {
-        if (response.data.resultCode === 0) {
-            let {id, login, email} = response.data.data;
-            dispatch(AddAuthInfo(id, email, login, true));
-        }
-    })
+export const AuthMe = () => async (dispatch) => {
+    let response = await AuthAPI.authMe();
+    if (response.data.resultCode === 0) {
+        let {id, login, email} = response.data.data;
+        dispatch(AddAuthData(id, email, login, true));
+    }
 }
-export const LogIn = (login, password, rememberMe) => (dispatch) => {
-    AuthAPI.login(login, password, rememberMe).then(response => {
-        console.log(response.data)
-        if (response.data.resultCode === 0) {
-            dispatch(AuthMe())
-        } else {
-            let msg = response.data.messages.length > 0 ? response.data.messages[0] : "Unknown error";
-            dispatch(stopSubmit('login', {_error: msg}))
-        }
-    })
+export const LogIn = (login, password, rememberMe) => async (dispatch) => {
+    let response = await AuthAPI.login(login, password, rememberMe);
+    if (response.data.resultCode === 0) {
+        dispatch(AuthMe())
+    } else {
+        let msg = response.data.messages.length > 0 ? response.data.messages[0] : "Unknown error";
+        dispatch(stopSubmit('login', {_error: msg}))
+    }
 }
-export const LogOut = () => (dispatch) => {
-    AuthAPI.logout().then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(AddAuthInfo(null, null, null, false))
-        }
-    })
+export const LogOut = () => async (dispatch) => {
+    let response = await AuthAPI.logout();
+    if (response.data.resultCode === 0) {
+        dispatch(AddAuthData(null, null, null, false))
+    }
 }

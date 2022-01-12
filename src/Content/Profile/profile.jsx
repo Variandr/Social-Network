@@ -1,9 +1,9 @@
 import React from 'react';
 import ProfileInfo from "./ProfileInfo/profileInfo";
 
-const Profile = (props) => {
+const Profile = ({profile, status, updateStatus}) => {
     return (
-        <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
     )
 }
 export default Profile;

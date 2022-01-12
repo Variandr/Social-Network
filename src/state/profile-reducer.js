@@ -1,8 +1,8 @@
 import {ProfileAPI} from "../API/api";
 
-const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
-const ADD_PROFILE = 'ADD_PROFILE';
-const SET_STATUS = 'UPDATE_STATUS';
+const TOGGLE_FETCHING = '/profile/TOGGLE_FETCHING';
+const ADD_PROFILE = '/profile/ADD_PROFILE';
+const SET_STATUS = '/profile/UPDATE_STATUS';
 
 let initialState = {
     profile: null,
@@ -23,25 +23,22 @@ const ProfileReducer = (state = initialState, action) => {
 }
 
 export default ProfileReducer;
-export const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
-export const AddProfile = (profile) => ({type: ADD_PROFILE, profile});
-export const setStatus = (status) => ({type: SET_STATUS, status});
-export const getProfile = (userId) => (dispatch) => {
+const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
+const AddProfile = (profile) => ({type: ADD_PROFILE, profile});
+const setStatus = (status) => ({type: SET_STATUS, status});
+export const getProfile = (userId) => async (dispatch) => {
     dispatch(ToggleFetching(true));
-    ProfileAPI.getProfile(userId).then(data => {
-        dispatch(ToggleFetching(false));
-        dispatch(AddProfile(data));
-    });
+    let data = await ProfileAPI.getProfile(userId);
+    dispatch(ToggleFetching(false));
+    dispatch(AddProfile(data));
 };
-export const getStatus = (userId) => (dispatch) => {
-    ProfileAPI.getStatus(userId).then(response => {
-        dispatch(setStatus(response.data))
-    })
+export const getStatus = (userId) => async (dispatch) => {
+    let response = await ProfileAPI.getStatus(userId);
+    dispatch(setStatus(response.data))
 };
-export const updateStatus = (status) => (dispatch) => {
-    ProfileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setStatus(status));
-        }
-    })
+export const updateStatus = (status) => async (dispatch) => {
+    let response = await ProfileAPI.updateStatus(status);
+    if (response.data.resultCode === 0) {
+        dispatch(setStatus(status));
+    }
 };
