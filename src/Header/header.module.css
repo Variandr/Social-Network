@@ -1,32 +1,56 @@
 .head {
-    background-color: #7a00ff;
+    display: flex;
+    position: relative;
+    background-color: #3c3f41;
     height: 100px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar {
+    margin: 0 auto;
 }
 
 .log {
     font-size: 24px;
-    color: #00ffd5;
-    font-family: bold;
-    float: right;
-    padding-top: 20px;
+    color: #00ffb2;
 }
 
-.auth {
-    padding-right: 20px;
+.login, .logout {
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 20px;
     text-decoration: none;
-    font-size: 24px;
-    color: #00ffd5;
-    font-family: bold;
-    float: right;
 }
 
-.logo {
-    width: 100px;
-    margin: 10px;
+.login:hover, .logout:hover {
+    background: #ffb700;
 }
 
-@media (min-width: 320px) and (max-width: 479px) {
-    .logo {
-        display: none;
-    }
+.login {
+    background: #009578;
+}
+
+.logout {
+    background: #952d00;
+}
+
+.button {
+    font-size: 70px;
+    margin-left: 70px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.button:hover {
+    border-bottom: 4px solid #a6ffa1;
+}
+
+.button:focus {
+    border-bottom: 4px solid #a6ffa1;
+    color: rgba(166, 255, 161, 0.80);
 }

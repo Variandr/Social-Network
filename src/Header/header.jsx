@@ -1,23 +1,21 @@
 import React from 'react';
 import s from './header.module.css';
 import {NavLink} from 'react-router-dom';
-import logo from '../assets/logo.png';
+import Navbar from "./navbar";
 
-const Header = (props) => {
+const Header = React.memo((props) => {
     return (
         <div className={s.head}>
+            <Navbar/>
             <span className={s.log}>
                 {props.isAuth
                     ? <div>
-                        <button onClick={props.LogOut}>Log Out</button>
+                        <button className={s.logout} onClick={props.LogOut}>Log Out</button>
                         {props.login}
                     </div>
-                    : <NavLink className={s.auth} to='/auth'>SignIn</NavLink>}
-            </span>
-            <span>
-                <img className={s.logo} src={logo} alt={logo}/>
+                    : <NavLink className={s.login} to='/auth'>SignIn</NavLink>}
             </span>
         </div>
     )
-}
+})
 export default Header;

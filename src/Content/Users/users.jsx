@@ -5,7 +5,7 @@ import FollowingButton from "./followingButton";
 
 const Users = React.memo(({page, onPageChanged, users, follow, unfollow, followingProgress}) => {
     return <div>
-        {PageCounter(page, onPageChanged)}
+        <PageCounter page={page} onPageChanged={onPageChanged}/>
         {
             users.map(u => <div key={u.id}>
                 <User u={u}/>

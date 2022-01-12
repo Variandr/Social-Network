@@ -1,0 +1,18 @@
+header {
+    position: absolute;
+    left: 150px;
+    top: 30px;
+}
+
+.button {
+    top: 20px;
+    font-size: 44px;
+    margin-left: 80px;
+    text-decoration: none;
+    color: #fff;
+    position: sticky;
+}
+.button:hover{
+    padding-bottom: 8px;
+    border-bottom: 3px solid purple;
+}

@@ -5,7 +5,6 @@ import Home from "./Content/Home/home";
 import UsersContainer from "./Content/Users/usersContainer";
 import ProfileContainer from "./Content/Profile/profileContainer";
 import AuthContainer from "./Header/headerContainer";
-import Navbar from "./Navbar/navbar";
 import Login from "./Content/Login/login";
 import {connect} from "react-redux";
 import {initializeApp} from "./state/app-reducer";
@@ -24,7 +23,6 @@ class App extends React.Component {
         return (
             <div className='app'>
                 <AuthContainer className='head'/>
-                <Navbar className='nav'/>
                 <div className='content'>
                     <Route path='/home' render={() => <Home/>}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>

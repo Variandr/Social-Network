@@ -4,7 +4,6 @@ import {ChangeArrayData} from "../helpers/objectHelpers";
 const FOLLOW = '/users/ADD_POST';
 const UNFOLLOW = '/users/UPDATE_POST_TEXT';
 const ADD_USER = '/users/ADD_PEOPLE';
-const SET_TOTAL_USERS = '/users/SET_TOTAL_USERS';
 const SET_PAGE = '/users/SET_PAGE';
 const TOGGLE_FETCHING = '/users/TOGGLE_FETCHING';
 const TOGGLE_FOLLOWING = '/users/TOGGLE_FOLLOWING';
@@ -25,8 +24,6 @@ const UsersReducer = (state = initialState, action) => {
             return {...state, users: ChangeArrayData(state.users, "id", action.userID, {followed: false})}
         case ADD_USER:
             return {...state, users: action.users}
-        case SET_TOTAL_USERS:
-            return {...state, totalUsers: action.usersCount}
         case SET_PAGE:
             return {...state, page: action.page}
         case TOGGLE_FETCHING:
@@ -47,7 +44,6 @@ export default UsersReducer;
 const Follow = (userID) => ({type: FOLLOW, userID});
 const Unfollow = (userID) => ({type: UNFOLLOW, userID});
 export const AddUsers = (users) => ({type: ADD_USER, users});
-export const SetTotalUsers = (usersCount) => ({type: SET_TOTAL_USERS, usersCount});
 export const SetPage = (page) => ({type: SET_PAGE, page});
 const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 const ToggleFollowing = (followingProgress, userId) => ({type: TOGGLE_FOLLOWING, followingProgress, userId});

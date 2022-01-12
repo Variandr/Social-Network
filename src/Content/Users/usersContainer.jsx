@@ -1,7 +1,4 @@
-import {
-    AddUsers, SetPage, SetTotalUsers,
-    getUsers, follow, unfollow
-} from "../../state/users-reducer";
+import {follow, getUsers, unfollow} from "../../state/users-reducer";
 import Users from "./users";
 import {connect} from "react-redux";
 import React from "react";
@@ -9,7 +6,8 @@ import Preloader from "../../helpers/preloader";
 import {compose} from "redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {
-    getFetchingSelector, getFollowingProgressSelector,
+    getFetchingSelector,
+    getFollowingProgressSelector,
     getPageSelector,
     getTotalUsersSizeSelector,
     getUsersSelector,
@@ -26,6 +24,7 @@ class UsersContainer extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
@@ -47,11 +46,11 @@ let mapStateToProps = (state) => {
         users: getUsersSelector(state),
         totalUsers: getTotalUsersSizeSelector(state),
         usersOnPage: getUsersSizeOnPageSelector(state),
-        currentPage: getPageSelector(state),
+        page: getPageSelector(state),
         isFetching: getFetchingSelector(state),
         followingProgress: getFollowingProgressSelector(state)
     }
 }
 export default compose(
     withAuthRedirect,
-    connect(mapStateToProps, {AddUsers, SetTotalUsers, SetPage, getUsers, follow, unfollow}))(UsersContainer);
+    connect(mapStateToProps, {getUsers, follow, unfollow}))(UsersContainer);
