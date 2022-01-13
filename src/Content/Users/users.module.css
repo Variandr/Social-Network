@@ -2,10 +2,11 @@ span{
     margin: 5px;
 }
 .ava{
-    width: 150px;
-    border-radius: 120px;
+    width: 100px;
+    border-radius: 50px;
 }
 .text{
+    margin: 20px;
     color: yellow;
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
@@ -17,4 +18,16 @@ span{
 .selected{
     color: darkorange;
     font-size: 19px;
+}
+.button{
+    margin: 0 20px;
+    background: #1a73a8;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-decoration: none;
 }

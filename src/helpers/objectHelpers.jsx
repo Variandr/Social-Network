@@ -1,4 +1,4 @@
-export const ChangeArrayData = (items, itemName, actionData, updatedData) => {
+const ChangeArrayData = (items, itemName, actionData, updatedData) => {
     return items.map(item => {
         if (item[itemName] === actionData) {
             return {...item, ...updatedData}
@@ -6,3 +6,4 @@ export const ChangeArrayData = (items, itemName, actionData, updatedData) => {
         return item;
     })
 }
+export default ChangeArrayData;
