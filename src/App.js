@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import {Route, withRouter} from "react-router-dom";
-import Home from "./Content/Home/home";
-import UsersContainer from "./Content/Users/usersContainer";
 import ProfileContainer from "./Content/Profile/profileContainer";
 import AuthContainer from "./Header/headerContainer";
 import Login from "./Content/Login/login";
@@ -10,6 +8,10 @@ import {connect} from "react-redux";
 import {initializeApp} from "./state/app-reducer";
 import Preloader from "./helpers/preloader";
 import {compose} from "redux";
+import {withSuspense} from "./hoc/withSuspense";
+
+const Home = React.lazy(() => import( './Content/Home/home'));
+const UsersContainer = React.lazy(() => import('./Content/Users/usersContainer'));
 
 class App extends React.Component {
     componentDidMount() {
@@ -24,9 +26,9 @@ class App extends React.Component {
             <div>
                 <AuthContainer/>
                 <div className='content'>
-                    <Route path='/home' render={() => <Home/>}/>
+                    <Route path='/home' render={withSuspense(Home)}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
+                    <Route path='/users' render={withSuspense(UsersContainer)}/>
                     <Route path='/auth' render={() => <Login/>}/>
                 </div>
             </div>
