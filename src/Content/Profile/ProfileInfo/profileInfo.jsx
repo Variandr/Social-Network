@@ -12,20 +12,25 @@ import git from '../../../assets/git.png';
 import youtube from '../../../assets/yt.png';
 import ProfileStatus from "./profileStatus";
 
-const ProfileInfo = ({profile, status, updateStatus}) => {
+const ProfileInfo = ({isOwner, profile, status, updateStatus, updatePhoto}) => {
     if (!profile) {
         return <Preloader/>
     }
     let contacts = profile.data.contacts;
+    const onImageSet = (e) => {
+        if(e.target.files.length){
+            updatePhoto(e.target.files[0])
+        }
+    }
     return (
         <div className={s.profile}>
             <div>{profile.fullName}</div>
-            <p className={s.description}><ProfileStatus updateStatus={updateStatus} status={status}/></p>
-            <img alt="ava" className={s.ava}
-                 src={profile.data.photos.large != null ? profile.data.photos.large : avatar}/>
+            <span className={s.description}><ProfileStatus updateStatus={updateStatus} status={status}/></span>
+            <img alt="ava" className={s.ava} src={profile.photos.large || avatar}/>
+            {isOwner ? <input type='file' onChange={onImageSet}/> : ""}
             <div>
                 Looking for a job: <img alt="checkmark" className={s.mark}
-                                        src={profile.data.lookingForAJob ? yes : no}/>
+                                        src={profile.lookingForAJob ? yes : no}/>
             </div>
             <div className={s.contacts}>
                 <ul className={s.socialicons1}>

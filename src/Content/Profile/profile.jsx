@@ -1,9 +1,13 @@
 import React from 'react';
 import ProfileInfo from "./ProfileInfo/profileInfo";
 
-const Profile = ({profile, status, updateStatus}) => {
+const Profile = ({isOwner, profile, status, updateStatus, updatePhoto}) => {
     return (
-        <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
+        <ProfileInfo updatePhoto={updatePhoto}
+                     profile={profile}
+                     status={status}
+                     isOwner={isOwner}
+                     updateStatus={updateStatus}/>
     )
 }
 export default Profile;

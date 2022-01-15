@@ -3,6 +3,7 @@ import {ProfileAPI} from "../API/api";
 const TOGGLE_FETCHING = '/profile/TOGGLE_FETCHING';
 const ADD_PROFILE = '/profile/ADD_PROFILE';
 const SET_STATUS = '/profile/UPDATE_STATUS';
+const SET_PHOTOS = '/profile/SET_PHOTOS';
 
 let initialState = {
     profile: null,
@@ -17,6 +18,8 @@ const ProfileReducer = (state = initialState, action) => {
             return {...state, profile: action.profile}
         case SET_STATUS:
             return {...state, status: action.status}
+        case SET_PHOTOS:
+            return {...state, profile: {...state.profile, photos: action.photos}}
         default:
             return state;
     }
@@ -26,11 +29,12 @@ export default ProfileReducer;
 const ToggleFetching = (isFetching) => ({type: TOGGLE_FETCHING, isFetching});
 const AddProfile = (profile) => ({type: ADD_PROFILE, profile});
 const setStatus = (status) => ({type: SET_STATUS, status});
+const setPhoto = (photos) => ({type: SET_PHOTOS, photos})
 export const getProfile = (userId) => async (dispatch) => {
     dispatch(ToggleFetching(true));
     let data = await ProfileAPI.getProfile(userId);
     dispatch(ToggleFetching(false));
-    dispatch(AddProfile(data));
+    dispatch(AddProfile(data.data));
 };
 export const getStatus = (userId) => async (dispatch) => {
     let response = await ProfileAPI.getStatus(userId);
@@ -42,3 +46,9 @@ export const updateStatus = (status) => async (dispatch) => {
         dispatch(setStatus(status));
     }
 };
+export const updatePhoto = (photo) => async (dispatch) => {
+    let response = await ProfileAPI.updatePhoto(photo)
+    if(response.data.resultCode === 0){
+        dispatch(setPhoto(response.data.data.photos))
+    }
+}
