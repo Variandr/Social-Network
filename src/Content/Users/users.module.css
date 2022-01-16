@@ -31,3 +31,7 @@ span{
     padding: 12px 15px;
     text-decoration: none;
 }
+.body{
+    height: 250vh;
+    background: #2b2b2b;
+}

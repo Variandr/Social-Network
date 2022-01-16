@@ -1,13 +1,20 @@
-.wrapper{
+.wrapper {
     display: grid;
     grid-template-rows: 100px 1fr;
     grid-template-areas: "h" "c";
-    background: rgba(43,43,43, 1);
+    background: rgba(43, 43, 43, 1);
     height: 100vh;
 }
-.header{
+
+.header {
     grid-area: h;
 }
+
 .content {
     grid-area: c;
+}
+
+.error {
+    text-align: center;
+    color: white;
 }
