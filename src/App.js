@@ -23,8 +23,8 @@ class App extends React.Component {
             return <Preloader/>
         }
         return (
-            <div>
-                <AuthContainer/>
+            <div className='wrapper'>
+                <AuthContainer className='head'/>
                 <div className='content'>
                     <Route path='/home' render={withSuspense(Home)}/>
                     <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>

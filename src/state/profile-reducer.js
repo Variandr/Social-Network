@@ -1,4 +1,5 @@
 import {ProfileAPI} from "../API/api";
+import {stopSubmit} from "redux-form";
 
 const TOGGLE_FETCHING = '/profile/TOGGLE_FETCHING';
 const ADD_PROFILE = '/profile/ADD_PROFILE';
@@ -50,5 +51,15 @@ export const updatePhoto = (photo) => async (dispatch) => {
     let response = await ProfileAPI.updatePhoto(photo)
     if(response.data.resultCode === 0){
         dispatch(setPhoto(response.data.data.photos))
+    }
+};
+export const updateProfile = (profile) => async (dispatch, getState) => {
+    let userId = getState().loginPage.id
+    let response = await ProfileAPI.updateProfile(profile);
+    if (response.data.resultCode === 0) {
+        dispatch(getProfile(userId))
+    }else{
+        dispatch(stopSubmit("profile", {_error: response.data.messages[0] }));
+        return Promise.reject(response.data.messages[0]);
     }
 }

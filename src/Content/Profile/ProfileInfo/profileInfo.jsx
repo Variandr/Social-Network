@@ -1,46 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './profileInfo.module.css';
 import avatar from '../../../assets/avatar.jpg';
 import Preloader from '../../../helpers/preloader';
-import yes from '../../../assets/checkmark-yes.png';
-import no from '../../../assets/checkmark-no.png';
-import facebook from '../../../assets/fb.png';
-import vk from '../../../assets/vk.png';
-import twitter from '../../../assets/twit.png';
-import instagram from '../../../assets/inst.png';
-import git from '../../../assets/git.png';
-import youtube from '../../../assets/yt.png';
 import ProfileStatus from "./profileStatus";
+import ProfileRead from "./profileRead";
+import ReduxProfileForm from "./profileForm";
 
-const ProfileInfo = ({isOwner, profile, status, updateStatus, updatePhoto}) => {
+const ProfileInfo = ({isOwner, profile, status, updateStatus, updatePhoto, updateProfile}) => {
+    let [editMode, setEditMode] = useState(false);
+    const doEdit = () => setEditMode(true)
+    const onSubmit = (formData) => {
+        updateProfile(formData).then(() => setEditMode(false))
+    }
     if (!profile) {
         return <Preloader/>
     }
-    let contacts = profile.data.contacts;
     const onImageSet = (e) => {
-        if(e.target.files.length){
+        if (e.target.files.length) {
             updatePhoto(e.target.files[0])
         }
     }
     return (
-        <div className={s.profile}>
+        <div className={editMode ? s.editProfile : s.profile}>
             <div>{profile.fullName}</div>
             <span className={s.description}><ProfileStatus updateStatus={updateStatus} status={status}/></span>
             <img alt="ava" className={s.ava} src={profile.photos.large || avatar}/>
-            {isOwner ? <input type='file' onChange={onImageSet}/> : ""}
-            <div>
-                Looking for a job: <img alt="checkmark" className={s.mark}
-                                        src={profile.lookingForAJob ? yes : no}/>
-            </div>
-            <div className={s.contacts}>
-                <ul className={s.socialicons1}>
-                    {contacts.facebook ? <li><a href={"https://" + contacts.facebook} rel="noreferrer" target="_blank"><img alt="social-media" src={facebook}/></a></li> : ""}
-                    {contacts.vk ? <li><a href={"https://" + contacts.vk} rel="noreferrer" target="_blank"><img alt="social-media" src={vk}/></a></li> : ""}
-                    {contacts.twitter ? <li><a href={"https://" + contacts.twitter} rel="noreferrer" target="_blank"><img alt="social-media" src={twitter}/></a></li> : ""}
-                    {contacts.instagram ? <li><a href={"https://" + contacts.instagram} rel="noreferrer" target="_blank"><img alt="social-media" src={instagram}/></a></li> : ""}
-                    {contacts.github ? <li><a href={"https://" + contacts.github} rel="noreferrer" target="_blank"><img alt="social-media" src={git}/></a></li> : ""}
-                    {contacts.youtube ? <li><a href={"https://" + contacts.youtube} rel="noreferrer" target="_blank"><img alt="social-media" src={youtube}/></a></li> : ""}
-                </ul>
+            {isOwner && <input type='file' onChange={onImageSet}/>}
+            {isOwner && !editMode && <button className={s.button} onClick={doEdit}>Edit</button>}
+            <div className={s.profileData}>
+                {editMode ? <ReduxProfileForm onSubmit={onSubmit} initialValues={profile} profile={profile}
+                                              updateProfile={updateProfile}/> : <ProfileRead profile={profile}/>}
             </div>
         </div>
     )

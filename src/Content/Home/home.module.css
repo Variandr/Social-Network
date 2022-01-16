@@ -1,6 +1,8 @@
 .wrapper {
     display: grid;
     position: relative;
+    height: 120vh;
+    background: rgba(43,43,43, 1);
     grid-template-columns: repeat(6, 1fr);
     grid-column-gap: 20px;
     grid-row-gap: 20px;
